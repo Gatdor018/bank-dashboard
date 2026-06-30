@@ -1,0 +1,146 @@
+// Import types from types.ts
+
+import type { Account, Transaction, Alert } from "../types/types";
+
+// Mock data for accounts
+export const accounts: Account[] = [
+    {
+    id: "acc-3001",
+    userName: "Customer 1",
+    accountType: "checking",
+    accountStatus: "active",
+    riskLevel: "low",
+    balance: 648.62,
+  },
+  {
+    id: "acc-3002",
+    userName: "Customer 2",
+    accountType: "savings",
+    accountStatus: "active",
+    riskLevel: "medium",
+    balance: 130.19,
+  },
+  {
+    id: "acc-3003",
+    userName: "Customer 3",
+    accountType: "highYield",
+    accountStatus: "active",
+    riskLevel: "high",
+    balance: 18980.64,
+  },
+  {
+    id: "acc-3004",
+    userName: "Customer 4",
+    accountType: "checking",
+    accountStatus: "inactive",
+    riskLevel: "low",
+    balance: -66.66, 
+  },
+]
+
+export const transactions: Transaction[] = [
+  {
+    id: "txn-10001",
+    accountId: "acc-3004",
+    date: "2026-06-24",
+    description: "MBTA Charlie Card Reload",
+    type: "withdrawal",
+    amount: -2.40,
+    transactionStatus: "completed",
+    riskLevel: "low",
+  },
+  {
+    id: "txn-10002",
+    accountId: "acc-3001",
+    date: "2026-06-25",
+    description: "Payroll Deposit",
+    type: "deposit",
+    amount: 2400.0,
+    transactionStatus: "completed",
+    riskLevel: "low",
+  },
+  {
+    id: "txn-10003",
+    accountId: "acc-3003",
+    date: "2026-06-26",
+    description: "Wire Transfer — Unknown Source",
+    type: "transfer",
+    amount: -8500.0,
+    transactionStatus: "in-review",
+    riskLevel: "high",
+  },
+  {
+    id: "txn-10004",
+    accountId: "acc-3003",
+    date: "2026-06-27",
+    description: "Apple Store Purchase",
+    type: "withdrawal",
+    amount: -880.99,
+    transactionStatus: "declined",
+    riskLevel: "medium",
+  },
+  {
+    id: "txn-10005",
+    accountId: "acc-3002",
+    date: "2026-06-27",
+    description: "Transfer to Savings",
+    type: "transfer",
+    amount: -500.0,
+    transactionStatus: "pending",
+    riskLevel: "low",
+  },
+  {
+    id: "txn-10006",
+    accountId: "acc-3001",
+    date: "2026-06-28",
+    description: "Recurring Subscription to Audible",
+    type: "withdrawal",
+    amount: -19.99,
+    transactionStatus: "pending",
+    riskLevel: "low",
+  },
+  {
+    id: "txn-10007",
+    accountId: "acc-3003",
+    date: "2026-06-29",
+    description: "ATM Withdrawal — Foreign",
+    type: "withdrawal",
+    amount: -900.0,
+    transactionStatus: "completed",
+    riskLevel: "medium",
+  },
+  {
+    id: "txn-10008",
+    accountId: "acc-3001",
+    date: "2026-06-30",
+    description: "Refund — TJ Maxx",
+    type: "deposit",
+    amount: 45.0,
+    transactionStatus: "completed",
+    riskLevel: "low",
+  },
+];
+
+export const alerts: Alert[] = [
+    {
+    id: "alert-9001",
+    riskLevel: "high",
+    alertMessage: "Large unrecognized wire transfer on acc-3003.",
+    alertTime: "2026-06-27",
+    reviewed: false,
+  },
+  {
+    id: "alert-9002",
+    riskLevel: "medium",
+    alertMessage: "Balance is low for acc-3002.",
+    alertTime: "2026-06-26",
+    reviewed: false,
+  },
+  {
+    id: "alert-9003",
+    riskLevel: "low",
+    alertMessage: "Account acc-3004 is inactive.",
+    alertTime: "2026-06-25",
+    reviewed: true,
+  },
+]
