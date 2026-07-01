@@ -66,7 +66,7 @@ export const transactions: Transaction[] = [
     description: "Wire Transfer — Unknown Source",
     type: "transfer",
     amount: -8500.0,
-    transactionStatus: "in-review",
+    transactionStatus: "declined",
     riskLevel: "high",
   },
   {
@@ -77,7 +77,7 @@ export const transactions: Transaction[] = [
     type: "withdrawal",
     amount: -880.99,
     transactionStatus: "declined",
-    riskLevel: "medium",
+    riskLevel: "high",
   },
   {
     id: "txn-10005",
@@ -106,7 +106,7 @@ export const transactions: Transaction[] = [
     description: "ATM Withdrawal — Foreign",
     type: "withdrawal",
     amount: -900.0,
-    transactionStatus: "completed",
+    transactionStatus: "in-review",
     riskLevel: "medium",
   },
   {
