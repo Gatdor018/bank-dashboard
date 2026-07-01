@@ -1,6 +1,6 @@
 import DashboardProps from "./components/dashboard";
 import { accounts, transactions } from "./mock-data/mock-data";
-import TransactionsTable from "./components/transactionsTable";
+import TransactionsCard  from "./components/transactionsCard";
 
 // format the currrency to USD
 function formatCurrency(amount: number): string {
@@ -44,7 +44,7 @@ export default function Home() {
           hint={`of ${accounts.length} accounts are currently active.`}
         />
         <DashboardProps
-          label="Transactions Needing Review"
+          label="Transactions Under Review"
           value={needsReviewTransactions.toString()}
           hint={`of ${transactions.length} transactions are under review.`}
           tone="warning"
@@ -59,7 +59,7 @@ export default function Home() {
         <h2 className="mb-3 text-lg font-semibold text-zinc-900">
           Recent Transactions
         </h2>
-        <TransactionsTable transactions={transactions} />
+        <TransactionsCard transactions={transactions} />
       </section>
     </main>
   );

@@ -6,7 +6,7 @@ interface BadgeProps {
     value: TransactionStatus | RiskLevel;
 }
 
-// Lookup tables: whose keys are the transactionStatus and riskLevel values and its values are strings.
+// Lookup tables: whose keys are the transactionStatus and riskLevel values.
 const statusClasses: Record<TransactionStatus, string> = {
     pending: "bg-yellow-100 text-yellow-800",
     completed: "bg-green-100 text-green-800",
@@ -14,7 +14,7 @@ const statusClasses: Record<TransactionStatus, string> = {
     "in-review": "bg-blue-100 text-blue-800",
 };
 const riskClasses: Record<RiskLevel, string> = {
-    high: "bg-red-100 text-red-800",
+    high: "bg-red-100 text-red-900",
     medium: "bg-yellow-100 text-yellow-800",
     low: "bg-green-100 text-green-800",
 };

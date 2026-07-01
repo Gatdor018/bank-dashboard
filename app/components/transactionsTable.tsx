@@ -20,21 +20,28 @@ export default function TransactionsTable({ transactions }: TransactionsTablePro
                     <tr>
                         <th className="px-4 py-3 font-medium">Date</th>
                         <th className="px-6 py-3 font-medium">Description</th>
-                        <th className="px-6 py-3 font-medium">Type</th>
+                        <th className="px-4 py-3 font-medium">Type</th>
                         <th className="px-6 py-3 font-medium">Amount</th>
                         <th className="px-6 py-3 font-medium">Status</th>
                         <th className="px-6 py-3 font-medium">Risk</th>
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-100">
-                    {transactions.map((transaction) => (
-                        <tr key={transaction.id} className="hover:bg-zinc-50">
-                            <td className="px-4 py-3 text-zinc-600">{transaction.date}</td>
-                            <td className="px-6 py-3 text-zinc-900 font-medium">{transaction.description}</td>
-                            <td className="px-4 py-3 text-zinc-600">{transaction.type}</td>
-                            <td className={`px-4 py-3 font-medium ${transaction.amount < 0 ? "text-zinc-900" : "text-green-600"}`}>
+                    {transactions.length === 0 ? (
+                        <tr>
+                            <td colSpan={6} className="px-6 py-3 text-center text-zinc-500">
+                                No transactions found.
+                            </td>
+                        </tr>
+                    ) : (
+                        transactions.map((transaction) => (
+                            <tr key={transaction.id} className="hover:bg-zinc-50">
+                                <td className="px-4 py-3 text-zinc-600">{transaction.date}</td>
+                                <td className="px-6 py-3 text-zinc-900 font-medium">{transaction.description}</td>
+                                <td className="px-6 py-3 text-zinc-600">{transaction.type}</td>
+                            <td className={`px-6 py-3 font-medium ${transaction.amount < 0 ? "text-amber-900" : "text-green-600"}`}>
                                 {formatCurrency(transaction.amount)}
-                                </td>
+                            </td>
                             <td className="px-6 py-3">
                                 <ColoredBadge kind="status" value={transaction.transactionStatus} />
                             </td>
@@ -42,9 +49,8 @@ export default function TransactionsTable({ transactions }: TransactionsTablePro
                                 <ColoredBadge kind="risk" value={transaction.riskLevel} />
                             </td>
                         </tr>
-                    ))}
+                    )))}
                 </tbody>
-
             </table>
         </div>
     )
