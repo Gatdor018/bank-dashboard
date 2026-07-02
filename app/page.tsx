@@ -17,6 +17,7 @@ export default function Home() {
   const activeAccounts = accounts.filter((account) => account.accountStatus === "active").length;
 
   const needsReviewTransactions = transactions.filter((transaction) => transaction.transactionStatus === "in-review").length;
+  const pendingTransactions = transactions.filter((transaction) => transaction.transactionStatus === "pending").length;
 
   const highRiskAccounts = accounts.filter((account) => account.riskLevel === "high").length;
   return (
@@ -36,7 +37,7 @@ export default function Home() {
         <DashboardProps
           label="Total Balance"
           value={formatCurrency(totalBalance)}
-          hint="This is the total balance of all accounts combined."
+          hint="Total User Accounts' Net Balance."
         />
         <DashboardProps
           label="Active Accounts"
@@ -44,21 +45,25 @@ export default function Home() {
           hint={`of ${accounts.length} accounts are currently active.`}
         />
         <DashboardProps
-          label="Transactions Under Review"
+          label="Transactions Under"
           value={needsReviewTransactions.toString()}
-          hint={`of ${transactions.length} transactions are under review.`}
+          hint={"Transactions that require further review."}
           tone="warning"
+        />
+        <DashboardProps
+          label="Pending Transactions"
+          value={pendingTransactions.toString()}
+          hint={"Transactions that are pending."}
+          tone="default"
         />
         <DashboardProps
           label="High Risk Accounts"
           value={highRiskAccounts.toString()}
+          hint={"Accounts with high risk levels."}
           tone="danger"
         />
       </section>
       <section className="mt-8">
-        <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-          Recent Transactions
-        </h2>
         <TransactionsCard transactions={transactions} />
       </section>
     </main>

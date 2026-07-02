@@ -4,6 +4,9 @@ import ColoredBadge from "./colored-badge";
 // Recieves an array of transactions and displays them in a table format
 interface TransactionsTableProps {
     transactions: Transaction[];
+    sort: { key: "date" | "amount"; direction: 
+        "asc" | "desc" };
+    onSort: (key: "date" | "amount") => void;
 }
 function formatCurrency(amount: number): string {
     return new Intl.NumberFormat("en-us", {
@@ -12,16 +15,28 @@ function formatCurrency(amount: number): string {
     }).format(amount);
 }
 
-export default function TransactionsTable({ transactions }: TransactionsTableProps) {
+export default function TransactionsTable({ transactions, sort, onSort }: TransactionsTableProps) {
     return (
         <div className="overflow-x-auto rounded-xl border border-zinc-200 bg-white shadow-md">
             <table className="min-w-full text-sm">
                 <thead className="border-b border-zinc-200 bg-zinc-50 text-zinc-500 text-left tracking-wide uppercase">
                     <tr>
-                        <th className="px-4 py-3 font-medium">Date</th>
+                        <th className="px-4 py-3 font-medium">
+                            <button onClick={() => onSort("date")}
+                            className="flex items-center gap-1 px-4 py-3 font-medium cursor-pointer hover:text-zinc-900 hover:bg-blue-100 select-none"
+                        >
+                            Date {sort.key === "date" && <span>{sort.direction === "asc" ? "▲" : "▼"}</span>}
+                            </button>
+                        </th>
                         <th className="px-6 py-3 font-medium">Description</th>
                         <th className="px-4 py-3 font-medium">Type</th>
-                        <th className="px-6 py-3 font-medium">Amount</th>
+                        <th className="px-6 py-3 font-medium">
+                            <button onClick={() => onSort("amount")}
+                                className="flex items-center gap-1 px-4 py-3 font-medium cursor-pointer hover:text-zinc-900 hover:bg-blue-100 select-none"
+                            >
+                                Amount {sort.key === "amount" && <span>{sort.direction === "asc" ? "▲" : "▼"}</span>}
+                            </button>
+                        </th>
                         <th className="px-6 py-3 font-medium">Status</th>
                         <th className="px-6 py-3 font-medium">Risk</th>
                     </tr>
