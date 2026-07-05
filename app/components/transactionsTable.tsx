@@ -53,7 +53,7 @@ export default function TransactionsTable({ transactions, sort, onSort }: Transa
                             <tr key={transaction.id} className="hover:bg-zinc-50">
                                 <td className="px-4 py-3 text-zinc-600">{transaction.date}</td>
                                 <td className="px-6 py-3 text-zinc-900 font-medium">{transaction.description}</td>
-                                <td className="px-6 py-3 text-zinc-600">{transaction.type}</td>
+                                <td className="px-6 py-3 text-zinc-600">{transaction.transactionType}</td>
                             <td className={`px-6 py-3 font-medium ${transaction.amount < 0 ? "text-amber-900" : "text-green-600"}`}>
                                 {formatCurrency(transaction.amount)}
                             </td>

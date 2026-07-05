@@ -1,6 +1,9 @@
 import DashboardProps from "./components/dashboard";
-import { accounts, transactions } from "./mock-data/mock-data";
+import { accounts, transactions, alerts } from "./mock-data/mock-data";
 import TransactionsCard  from "./components/transactionsCard";
+import AccountsList from "./components/accountsList";
+import AlertsCard from "./components/alertsCard";
+import InsightsSummary from "./components/insightsSummary";
 
 // format the currrency to USD
 function formatCurrency(amount: number): string {
@@ -30,6 +33,9 @@ export default function Home() {
           Bank Dashboard
         </p>
       </header>
+      <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-xs text-green-700">
+            Demo dashboard — all data is mock and no action moves real money.
+      </div>
 
       {/* Responsive design for different screen sizes */}
       <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -63,6 +69,13 @@ export default function Home() {
           tone="danger"
         />
       </section>
+      <section className="mt-8">
+        <InsightsSummary account={accounts[0]} transactions={transactions} />
+      </section>
+      <section className="mt-8">
+        <AlertsCard alerts={alerts} />
+      </section>
+      <AccountsList accounts={accounts} />
       <section className="mt-8">
         <TransactionsCard transactions={transactions} />
       </section>

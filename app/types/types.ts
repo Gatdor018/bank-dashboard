@@ -25,7 +25,7 @@ export interface Transaction {
     accountId: string;
     date: string;
     description: string;
-    type: TransactionType;
+    transactionType: TransactionType;
     amount: number;
     transactionStatus: TransactionStatus;
     riskLevel: RiskLevel;

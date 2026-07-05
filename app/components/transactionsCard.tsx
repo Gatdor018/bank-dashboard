@@ -20,11 +20,23 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
         key: "date", 
         direction: "desc",
     });
+    // State for filtering transactions by status, risk level, and type. 
+    // Initialized to "all" for each filter.
+
+    const [statusFilter, setStatusFilter] = useState<string>("all");
+    const [riskFilter, setRiskFilter] = useState<string>("all");
+    const [typeFilter, setTypeFilter] = useState<string>("all");
+
 
     // Filter transactions based on the search term
-    const filteredTransactions = transactions.filter((t) =>
-        t.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredTransactions = transactions.filter((t) => {
+        const matchesSearch = t.description.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesStatus = statusFilter === "all" || t.transactionStatus === statusFilter;
+        const matchesRisk = riskFilter === "all" || t.riskLevel === riskFilter;
+        const matchesType = typeFilter === "all" || t.transactionType === typeFilter;
+
+        return matchesSearch && matchesStatus && matchesRisk && matchesType;
+    });
     // Make a copy of the filtered transactions and sort them.
     const sortedTransactions = [...filteredTransactions].sort((a, b) => {
         let comparison = 0;
@@ -55,19 +67,55 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
 
     return (
         <section className="mt-8">
-            <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+            <div className="mt-3 flex flex-wrap flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                <h2 className="text-lg font-semibold text-zinc-900">
                 {/* Heading for the transactions section */}
                 Recent Transactions
-               </h2> 
+               </h2>
+
+                <select
+                    aria-label="Filter by transaction type"
+                    value={typeFilter}
+                    onChange={(e) => setTypeFilter(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900
+                     placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                >
+                    <option value="all">Transaction Types</option>
+                    <option value="deposit">Deposit</option>
+                    <option value="withdrawal">Withdrawal</option>
+                    <option value="transfer">Transfer</option>
+                </select>
+                <select
+                    aria-label="Filter by status"
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900
+                     placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                >
+                    <option value="all">Statuses</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                    <option value="declined">Declined</option>
+                    <option value="in-review">In Review</option>
+                </select>
+                <select
+                    aria-label="Filter by risk level"
+                    value={riskFilter}
+                    onChange={(e) => setRiskFilter(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                >
+                    <option value="all">Risk Levels</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+
                 <input
                     type="text"
                     placeholder="Search transactions..."
-                    aria-label="Search transactions"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900
-                     placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
                 />
             </div>
             {/* Display how many transactions matched the search term */}
