@@ -24,7 +24,7 @@ export default function AlertsCard({ alerts }: AlertsCardProps) {
     }
     else
     {
-    return severityClasses[a.riskLevel] - severityClasses[b.riskLevel];
+    return severityClasses[b.riskLevel] - severityClasses[a.riskLevel];
     }
   });
   // Function to handle marking an alert as reviewed
@@ -40,26 +40,26 @@ export default function AlertsCard({ alerts }: AlertsCardProps) {
   
   return (
     <section className="mt-8">
-        <h2 className="mb-3 text-xl font-semibold text-zinc-900">
+        <h2 className="mb-3 text-xl font-semibold text-white">
             Alerts{""}
-        <span className="mb-3 text-zinc-600"> 
-            ({unreviewedCount} unreviewed)
+        <span className="mb-3 text-white"> 
+            ({unreviewedCount})
         </span>
         </h2>
         <div className="space-y-2">
             {sortedAlerts.map((alert) => (
-                <div key={alert.id} className={`flex items-start justify-between gap-4 rounded-lg border border-zinc-200 bg-white p-3 ${severityClasses[alert.riskLevel]} ${alert.reviewed ? 'opacity-60' : ''} shadow-sm`}>
+                <div key={alert.id} className={`flex items-start justify-between gap-4 rounded-3xl border border-[#164d33] bg-[#0d2f23] p-4 ${alert.reviewed ? 'opacity-60' : ''} shadow-xl shadow-black/20`}>
                     <div>
-                        <p className="font-semibold text-zinc-900">{alert.alertMessage}</p>
-                        <p className="text-sm text-zinc-600"> {alert.riskLevel} risk : {alert.alertTime} </p>
+                        <p className="font-semibold text-white">{alert.alertMessage}</p>
+                        <p className="text-sm text-white">{alert.riskLevel} risk · {alert.alertTime}</p>
                     </div>
 
                     {alert.reviewed ? (
-                        <span className="shrink-0 text-xs font-medium text-zinc-400">Reviewed</span>
+                        <span className="shrink-0 text-xs font-medium text-white">Reviewed</span>
                     ) : ( 
                         <button
                             onClick={() => handleReview(alert.id)}
-                            className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
+                            className="rounded-full bg-[#35d794] px-3 py-1.5 text-sm font-semibold text-[#05250f] shadow-lg shadow-[#35d794]/20 hover:bg-[#7ef0c0]"
                         >
                             Mark as Reviewed
                         </button>

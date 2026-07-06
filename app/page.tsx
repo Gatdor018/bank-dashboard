@@ -1,9 +1,10 @@
 import DashboardProps from "./components/dashboard";
 import { accounts, transactions, alerts } from "./mock-data/mock-data";
-import TransactionsCard  from "./components/transactionsCard";
-import AccountsList from "./components/accountsList";
 import AlertsCard from "./components/alertsCard";
 import InsightsSummary from "./components/insightsSummary";
+
+import Link from "next/link";
+import ThemeToggle from "./components/themeToggle";
 
 // format the currrency to USD
 function formatCurrency(amount: number): string {
@@ -24,21 +25,19 @@ export default function Home() {
 
   const highRiskAccounts = accounts.filter((account) => account.riskLevel === "high").length;
   return (
-    <main className="min-h-screen bg-zinc-50 p-6">
-      <header className="mb-6">
-        <h1 className="text-3xl font-semibold text-zinc-900">
+    <main className="min-h-screen bg-[#061411] p-6 text-slate-100">
+      <header className="mb-6 flex items-start justify-between">
+        <h1 className="text-4xl font-semibold text-white">
           Bank of the Future
         </h1>
-        <p className="text-zinc-600">
-          Bank Dashboard
-        </p>
+        <ThemeToggle />
       </header>
-      <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-xs text-green-700">
-            Demo dashboard — all data is mock and no action moves real money.
+      <div className="mt-2 mb-8 px-4 py-3 text-3xl text-[#8fe8c1]">
+        Bank Dashboard
       </div>
 
       {/* Responsive design for different screen sizes */}
-      <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
         {/* Dashboard components for displaying KPI cards */}
         <DashboardProps
           label="Total Balance"
@@ -48,24 +47,20 @@ export default function Home() {
         <DashboardProps
           label="Active Accounts"
           value={activeAccounts.toString()}
-          hint={`of ${accounts.length} accounts are currently active.`}
         />
         <DashboardProps
-          label="Transactions Under"
+          label="Transactions Under Review"
           value={needsReviewTransactions.toString()}
-          hint={"Transactions that require further review."}
           tone="warning"
         />
         <DashboardProps
           label="Pending Transactions"
           value={pendingTransactions.toString()}
-          hint={"Transactions that are pending."}
           tone="default"
         />
         <DashboardProps
           label="High Risk Accounts"
           value={highRiskAccounts.toString()}
-          hint={"Accounts with high risk levels."}
           tone="danger"
         />
       </section>
@@ -75,9 +70,23 @@ export default function Home() {
       <section className="mt-8">
         <AlertsCard alerts={alerts} />
       </section>
-      <AccountsList accounts={accounts} />
-      <section className="mt-8">
-        <TransactionsCard transactions={transactions} />
+      <section className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Link href="/accounts" 
+        className="group flex items-center justify-between rounded-3xl border border-[#164d33] bg-[#0d3126] p-5 shadow-xl shadow-black/20 hover:border-[#35d794]"
+        >
+          <div>
+            <p className="text-lg font-semibold text-white">Accounts</p>
+            <p className="text-white">View Client Accounts.</p>
+          </div>
+          <span className="text-[#35d794] text-2xl">→</span>
+        </Link>
+        <Link href="/transactions" className="group flex items-center justify-between rounded-3xl border border-[#164d33] bg-[#0d3126] p-5 shadow-xl shadow-black/20 hover:border-[#35d794]">
+          <div>
+            <p className="text-lg font-semibold text-white">Transactions</p>
+            <p className="text-white">View Client Transactions.</p>
+          </div>
+          <span className="text-[#35d794] text-2xl">→</span>
+        </Link>
       </section>
     </main>
   );

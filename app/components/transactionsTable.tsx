@@ -17,13 +17,13 @@ function formatCurrency(amount: number): string {
 
 export default function TransactionsTable({ transactions, sort, onSort }: TransactionsTableProps) {
     return (
-        <div className="overflow-x-auto rounded-xl border border-zinc-200 bg-white shadow-md">
+        <div className="overflow-x-auto rounded-3xl border border-[#164d33] bg-[#0d2f23] shadow-xl shadow-black/20">
             <table className="min-w-full text-sm">
-                <thead className="border-b border-zinc-200 bg-zinc-50 text-zinc-500 text-left tracking-wide uppercase">
+                <thead className="border-b border-[#164d33] bg-[#103827] text-white text-left tracking-wide uppercase">
                     <tr>
                         <th className="px-4 py-3 font-medium">
                             <button onClick={() => onSort("date")}
-                            className="flex items-center gap-1 px-4 py-3 font-medium cursor-pointer hover:text-zinc-900 hover:bg-blue-100 select-none"
+                            className="flex items-center gap-1 px-4 py-3 font-medium cursor-pointer hover:text-[#35d794] hover:bg-[#164d33] select-none"
                         >
                             Date {sort.key === "date" && <span>{sort.direction === "asc" ? "▲" : "▼"}</span>}
                             </button>
@@ -32,7 +32,7 @@ export default function TransactionsTable({ transactions, sort, onSort }: Transa
                         <th className="px-4 py-3 font-medium">Type</th>
                         <th className="px-6 py-3 font-medium">
                             <button onClick={() => onSort("amount")}
-                                className="flex items-center gap-1 px-4 py-3 font-medium cursor-pointer hover:text-zinc-900 hover:bg-blue-100 select-none"
+                                className="flex items-center gap-1 px-4 py-3 font-medium cursor-pointer hover:text-[#35d794] hover:bg-[#164d33] select-none"
                             >
                                 Amount {sort.key === "amount" && <span>{sort.direction === "asc" ? "▲" : "▼"}</span>}
                             </button>
@@ -41,20 +41,20 @@ export default function TransactionsTable({ transactions, sort, onSort }: Transa
                         <th className="px-6 py-3 font-medium">Risk</th>
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-100">
+                <tbody className="divide-y divide-[#164d33]">
                     {transactions.length === 0 ? (
                         <tr>
-                            <td colSpan={6} className="px-6 py-3 text-center text-zinc-500">
+                            <td colSpan={6} className="px-6 py-3 text-center text-white">
                                 No transactions found.
                             </td>
                         </tr>
                     ) : (
                         transactions.map((transaction) => (
-                            <tr key={transaction.id} className="hover:bg-zinc-50">
-                                <td className="px-4 py-3 text-zinc-600">{transaction.date}</td>
-                                <td className="px-6 py-3 text-zinc-900 font-medium">{transaction.description}</td>
-                                <td className="px-6 py-3 text-zinc-600">{transaction.transactionType}</td>
-                            <td className={`px-6 py-3 font-medium ${transaction.amount < 0 ? "text-amber-900" : "text-green-600"}`}>
+                            <tr key={transaction.id} className="hover:bg-[#0b241b]">
+                                <td className="px-4 py-3 text-white">{transaction.date}</td>
+                                <td className="px-6 py-3 text-white font-medium">{transaction.description}</td>
+                                <td className="px-6 py-3 text-white">{transaction.transactionType}</td>
+                            <td className={`px-6 py-3 font-medium ${transaction.amount < 0 ? "text-amber-300" : "text-emerald-300"}`}>
                                 {formatCurrency(transaction.amount)}
                             </td>
                             <td className="px-6 py-3">

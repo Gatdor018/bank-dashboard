@@ -6,7 +6,7 @@ import type { Account, Transaction, Alert } from "../types/types";
 export const accounts: Account[] = [
     {
     id: "acc-3001",
-    userName: "Customer 1",
+    userName: "John Doe",
     accountType: "checking",
     accountStatus: "active",
     riskLevel: "low",
@@ -14,7 +14,7 @@ export const accounts: Account[] = [
   },
   {
     id: "acc-3002",
-    userName: "Customer 2",
+    userName: "Phillip Riek",
     accountType: "savings",
     accountStatus: "active",
     riskLevel: "medium",
@@ -22,7 +22,7 @@ export const accounts: Account[] = [
   },
   {
     id: "acc-3003",
-    userName: "Customer 3",
+    userName: "Amad Mwangi",
     accountType: "highYield",
     accountStatus: "active",
     riskLevel: "high",
@@ -30,7 +30,7 @@ export const accounts: Account[] = [
   },
   {
     id: "acc-3004",
-    userName: "Customer 4",
+    userName: "Janet Muthoni",
     accountType: "checking",
     accountStatus: "inactive",
     riskLevel: "low",

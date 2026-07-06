@@ -25,19 +25,19 @@ export default function InsightsSummary({ account, transactions }: InsightsSumma
     }
 
   return (
-    <section>
-      <h2 className="text-lg font-semibold text-zinc-900 mb-2">Insights Summary</h2>
-      <div className="flex flex-row justify-between gap-4 rounded-lg border border-zinc-200 bg-white p-4 shadow-md">
+    <section className="mt-12  p-4 shadow-xl shadow-black/20">
+      <h2 className="text-lg font-semibold text-white mb-2">Insights Summary</h2>
+      <div className="flex flex-row justify-between gap-4 rounded-3xl p-4 shadow-xl shadow-black/20">
         {insights.length > 0 ? (
-            <ul className="flex items-center gap-4 justify-between text-zinc-600 border border-zinc-900 rounded-lg p-4 w-full">
+            <ul className="flex flex-wrap items-center gap-4 justify-between text-white p-4 w-full">
             {insights.map((insight, index) => (
                 <li key={index} className="flex gap-2">
-                    <span className={`text-zinc-900 border border-zinc-900 rounded-lg p-2 ${insight.includes('high-risk') ? 'bg-red-100 text-red-800' : ''} ${insight.includes('overdrawn') ? 'bg-yellow-100 text-yellow-800' : ''} ${insight.includes('under review') ? 'bg-blue-100 text-blue-800' : ''} ${insight.includes('declined') ? 'bg-gray-100 text-gray-800' : ''}`}>{insight}</span>
+                    <span className={` px-3 py-2 text-sm font-medium ${insight.includes('high-risk') ? ' text-[#e20707]' : ''} ${insight.includes('overdrawn') ? ' text-[#eecf4f]' : ''} ${insight.includes('under review') ? 'text-blue-500' : ''} ${insight.includes('declined') ? 'text-[#ae7c47]' : ''}`}>{insight}</span>
                 </li>
             ))}
             </ul>
         ) : (
-            <p className="text-zinc-600">No significant insights to report.</p>
+            <p className="text-white">No significant insights to report.</p>
         )}
     </div>
     </section>

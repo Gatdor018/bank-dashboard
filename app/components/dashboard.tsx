@@ -9,15 +9,15 @@ export interface DashboardProps {
 // destructuring the props in the dashboard component
 export default function Dashboard({ label, value, hint, tone = "default" }: DashboardProps) {
     const toneClasses = {
-        default: "text-zinc-900",
-        warning: "text-yellow-600",
-        danger: "text-red-600",
+        default: "text-[#d8f8e7]",
+        warning: "text-[#fb923c]",
+        danger: "text-[#fda4af]",
     };
     return (
-        <div className="p-5 rounded-xl border border-zinc-200 bg-white shadow-md">
-            <p className="text-sm font-medium text-zinc-500">{label}</p>
-            <p className={`mt-2 text-2xl font-semibold ${toneClasses[tone]}`}>{value}</p>
-            {hint ? <p className="mt-1 text-xs text-zinc-400">{hint}</p> : null}
+        <div className="p-6 rounded-3xl border border-[#164d33] bg-[#0d2f23] shadow-xl shadow-black/20">
+            <p className="text-sm font-medium text-white">{label}</p>
+            <p className={`mt-2 text-3xl font-semibold ${toneClasses[tone]}`}>{value}</p>
+            {hint ? <p className="mt-1 text-xs text-white">{hint}</p> : null}
         </div>
     );
 }

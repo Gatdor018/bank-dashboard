@@ -68,7 +68,7 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
     return (
         <section className="mt-8">
             <div className="mt-3 flex flex-wrap flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-               <h2 className="text-lg font-semibold text-zinc-900">
+               <h2 className="text-lg font-semibold text-white">
                 {/* Heading for the transactions section */}
                 Recent Transactions
                </h2>
@@ -77,8 +77,7 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
                     aria-label="Filter by transaction type"
                     value={typeFilter}
                     onChange={(e) => setTypeFilter(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900
-                     placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                    className="w-full rounded-2xl border border-[#164d33] bg-[#0d2f23] px-3 py-2 text-sm text-slate-100 placeholder-slate-500 shadow-black/30 focus:border-[#35d794] focus:ring-1 focus:outline-none focus:ring-[#35d794]/20 sm:w-64"
                 >
                     <option value="all">Transaction Types</option>
                     <option value="deposit">Deposit</option>
@@ -89,8 +88,7 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
                     aria-label="Filter by status"
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900
-                     placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                    className="w-full rounded-2xl border border-[#164d33] bg-[#0d2f23] px-3 py-2 text-sm text-slate-100 placeholder-slate-500 shadow-black/30 focus:border-[#35d794] focus:ring-1 focus:outline-none focus:ring-[#35d794]/20 sm:w-64"
                 >
                     <option value="all">Statuses</option>
                     <option value="completed">Completed</option>
@@ -102,7 +100,7 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
                     aria-label="Filter by risk level"
                     value={riskFilter}
                     onChange={(e) => setRiskFilter(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                    className="w-full rounded-2xl border border-[#164d33] bg-[#0d2f23] px-3 py-2 text-sm text-slate-100 shadow-black/30 focus:border-[#35d794] focus:ring-1 focus:outline-none focus:ring-[#35d794]/20 sm:w-64"
                 >
                     <option value="all">Risk Levels</option>
                     <option value="high">High</option>
@@ -115,11 +113,11 @@ export default function TransactionsCard({ transactions }: TransactionsProps) {
                     placeholder="Search transactions..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:outline-none focus:ring-blue-500 sm:w-64"
+                    className="w-full rounded-2xl border border-[#164d33] bg-[#0d2f23] px-3 py-2 text-sm text-slate-100 placeholder-slate-500 shadow-black/30 focus:border-[#35d794] focus:ring-1 focus:outline-none focus:ring-[#35d794]/20 sm:w-64"
                 />
             </div>
             {/* Display how many transactions matched the search term */}
-            <p className="text-zinc-900 text-lg font-medium mb-3">
+            <p className="text-white text-lg font-medium mb-3">
                 {filteredTransactions.length} of {transactions.length} Transactions
             </p>
             {/* Display the filtered transactions table */}
